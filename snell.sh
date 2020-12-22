@@ -47,3 +47,13 @@ else
   systemctl enable snell
   systemctl start snell
 fi
+
+if [ -f $CONF ]; then
+    echo -e "\n"
+    echo "==================================================="
+    cat $CONF | while read line; do echo $line ; done
+    echo "==================================================="
+    echo -e "\n"
+else
+    echo "================>$CONF is not found, print file faild"
+fi
