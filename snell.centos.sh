@@ -5,7 +5,7 @@ CONF="/etc/snell/snell-server.conf"
 SYSTEMD="/etc/systemd/system/snell.service"
 yum install unzip -y
 cd ~/
-wget --no-check-certificate -O snell.zip https://github.com/surge-networks/snell/releases/download/v2.0.1/snell-server-v2.0.1-linux-amd64.zip
+wget --no-check-certificate -O snell.zip https://github.com/surge-networks/snell/releases/download/v3.0.1/snell-server-v3.0.1-linux-amd64.zip
 unzip -o snell.zip
 rm -f snell.zip
 chmod +x snell-server
@@ -24,7 +24,7 @@ if [ -f ${CONF} ]; then
   echo "[snell-server]" >>${CONF}
   echo "listen = 0.0.0.0:16000" >>${CONF}
   echo "psk = ${PSK}" >>${CONF}
-  echo "obfs = http" >>${CONF}
+  echo "obfs = tls" >>${CONF}
 fi
 if [ -f ${SYSTEMD} ]; then
   echo "Found existing service..."
@@ -46,14 +46,4 @@ else
   systemctl daemon-reload
   systemctl enable snell
   systemctl start snell
-fi
-
-if [ -f $CONF ]; then
-    echo -e "\n"
-    echo "==================================================="
-    cat $CONF | while read line; do echo $line ; done
-    echo "==================================================="
-    echo -e "\n"
-else
-    echo "================>$CONF is not found, print file faild"
 fi
