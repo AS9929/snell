@@ -5,7 +5,7 @@ CONF="/etc/snell/snell-server.conf"
 SYSTEMD="/etc/systemd/system/snell.service"
 apt-get install unzip -y
 cd ~/
-wget --no-check-certificate -O snell.zip https://github.com/AS9929/snell/blob/main/snell-server-v3.0.1-linux-amd64.zip?raw=true
+wget --no-check-certificate -O snell.zip https://github.com/AS9929/snell/releases/download/0.1/snell-server-v3.0.1-linux-amd64.zip
 unzip -o snell.zip
  rm -f snell.zip
  chmod +x snell-server
